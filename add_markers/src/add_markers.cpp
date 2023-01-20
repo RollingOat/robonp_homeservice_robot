@@ -7,6 +7,7 @@
 #include <visualization_msgs/Marker.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <math.h>
+
 ros::Publisher marker_pub;
 // Set our initial shape type to be a cube
 uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -62,12 +63,24 @@ void reachCallback(const geometry_msgs::PoseWithCovarianceStamped& robot_pos){
     double thres = 0.5;
     double robot_x = robot_pos.pose.pose.position.x;
     double robot_y = robot_pos.pose.pose.position.y;
-    double dist;
+    double pick_x;
+    double pick_y;
+    double pick_w;
+    double drop_x;
+    double drop_y;
+    double drop_w;
+    ros::param::get("pick_up_x",pick_x);
+    ros::param::get("pick_up_y",pick_y);
+    ros::param::get("pick_up_w",pick_w);
+    ros::param::get("drop_off_x",drop_x);
+    ros::param::get("drop_off_y",drop_y);
+    ros::param::get("drop_off_w",drop_w);
+    double dist = sqrt(pow(pick_x - robot_x, 2) + pow(pick_y - robot_y, 2));
     if(dist<=thres){
-        publish_marker();
+        publish_marker(pick_x, pick_y, true);
     }
     else{
-        publish_marker
+        publish_marker(pick_x, pick_y, false);
     }
     
 }
@@ -80,5 +93,4 @@ int main( int argc, char** argv )
   marker_pub = n.advertise<visualization_msgs::Marker>("target_object", 1);
   ros::Subscriber odom_sub = n.subscribe("/amcl_pose ", 10, reachCallback);
   ros::spin();
-
 }

@@ -1,11 +1,11 @@
 <launch>
-    <param name="pick_up_x" value="2.0"/>
+    <!-- <param name="pick_up_x" value="2.0"/>
     <param name="pick_up_y" value="0.0"/>
     <param name="pick_up_w" value="1.0"/>
     <param name="drop_off_x" value="2.0"/>
     <param name="drop_off_y" value="5.0"/>
-    <param name="drop_off_w" value="1.0"/>
+    <param name="drop_off_w" value="1.0"/> -->
 
-    <node name="add_marker" pkg="add_markers" type="add_markers"/>
+    <node name="add_markers_node" pkg="add_markers" type="add_markers"/>
 
 </launch>
