@@ -10,11 +10,4 @@ a drop-off location. The marker will be shown on the drop-off location to indica
 
 ## Visualization from RVIZ and GAZEBO
 
-<video width="320" height="240" controls>
-  <source src="https://github.com/RollingOat/robonp_homeservice_robot/blob/master/gazebe.mp4" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="URL_OF_YOUR_VIDEO" type="video/mp4">
-</video>
 
