@@ -9,3 +9,14 @@ Packages like pick up and add_marker are implemented to simulate the delivery se
 a drop-off location. The marker will be shown on the drop-off location to indicate the success of delievery. 
 
 ## Visualization from RVIZ and GAZEBO
+
+<video width="320" height="240" controls>
+  <source src="URL_OF_YOUR_VIDEO" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls>
+  <source src="URL_OF_YOUR_VIDEO" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
