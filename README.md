@@ -10,6 +10,6 @@ a drop-off location. The marker will be shown on the drop-off location to indica
 
 ## Visualization from RVIZ and GAZEBO
 
-![](https://github.com/robonp_homeservice_robot/rviz.gif)
-![](https://github.com/robonp_homeservice_robot/gazebo.gif)
+![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/gazebo.gif)
+![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/rviz.gif)
 
