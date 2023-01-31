@@ -24,14 +24,36 @@
   </include>
 
   <!-- Find my robot Description-->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_robot.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_new_robot.xacro'"/>
 
   <!-- Spawn My Robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
-        args="-urdf -param robot_description -model my_robot 
+        args="-urdf -param robot_description -model my_new_robot 
               -x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+  
+  <!-- mapping launch -->
+  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+    <param name="base_frame" value="robot_footprint"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_frame" value="map"/>
+  </node>
+    
+  <!--localization launch-->
+  <include file="$(find mcl_localizer)/launch/amcl.launch"/>
+
+  <!-- Move Base -->
+  <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+      <!-- <remap from="scan" to="mcl_localizer/laser/scan"/> -->
+      <param name="base_global_planner" value="navfn/NavfnROS" />
+      <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+      <rosparam file="$(find mcl_localizer)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find mcl_localizer)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find mcl_localizer)/config/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find mcl_localizer)/config/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find mcl_localizer)/config/base_local_planner_params.yaml" command="load" />
+  </node> 
 
   <!--launch rviz-->
-  <!-- <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d src/rvizConfig/test_slam_config.rviz"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
 </launch>

@@ -6,6 +6,11 @@
     <param name="drop_off_y" value="1.0"/>
     <param name="drop_off_w" value="1.0"/>
 
+    <!-- <include file="$(find my_robot)/launch/world.launch"/> -->
+    <!-- <include file="$(find mcl_localizer)/launch/amcl.launch"/> -->
+    <!-- <include file="$(find rtab_mapping)/launch/mapping.launch"/> -->
+
     <node name="pick_object" pkg="pick_object" type="pick_object"/>
+    <!-- <node name="add_markers_node" pkg="add_markers" type="add_markers"/> -->
 
 </launch>

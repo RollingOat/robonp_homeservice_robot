@@ -11,6 +11,8 @@
 ros::Publisher marker_pub;
 // Set our initial shape type to be a cube
 uint32_t shape = visualization_msgs::Marker::CUBE;
+bool pickup_reached = false;
+bool dropoff_reached = false;
 
 void publish_marker(double x, double y, bool act){
 
@@ -75,16 +77,27 @@ void reachCallback(const geometry_msgs::PoseWithCovarianceStamped& robot_pos){
     ros::param::get("drop_off_x",drop_x);
     ros::param::get("drop_off_y",drop_y);
     ros::param::get("drop_off_w",drop_w);
-    double dist = sqrt(pow(pick_x - robot_x, 2) + pow(pick_y - robot_y, 2));
-    if(dist<=thres){
-        publish_marker(pick_x, pick_y, true);
+    if(!pickup_reached){
+        double dist_pick = sqrt(pow(pick_x - robot_x, 2) + pow(pick_y - robot_y, 2));
+        if(dist_pick<=thres){ // if reach the pick up zone, make marker disappear
+            pickup_reached = true;
+            publish_marker(pick_x, pick_y, false);
+        }
+        else{ // otherwise, 
+            publish_marker(pick_x, pick_y, true);
+        }
     }
-    else{
-        publish_marker(pick_x, pick_y, false);
+    else if(pickup_reached && !dropoff_reached){
+        double dist_drop = sqrt(pow(drop_x - robot_x, 2) + pow(drop_y - robot_y, 2));
+        if(dist_drop<=thres){ // if reach the drop off zone, make marker appear
+            dropoff_reached = true;
+            publish_marker(drop_x, drop_y, true);
+        }
+        else{ // otherwise, 
+            publish_marker(drop_x, drop_y, false);
+        }
     }
-    
 }
-
 
 int main( int argc, char** argv )
 {
