@@ -24,11 +24,11 @@
   </include>
 
   <!-- Find my robot Description-->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_new_robot.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/four_wheel_robot.xacro'"/>
 
   <!-- Spawn My Robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
-        args="-urdf -param robot_description -model my_new_robot 
+        args="-urdf -param robot_description -model four_wheel_robot
               -x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
   
@@ -55,5 +55,5 @@
   </node> 
 
   <!--launch rviz-->
-  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d rvizConfig/full_stack.rviz"/>
 </launch>
