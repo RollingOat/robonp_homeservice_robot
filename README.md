@@ -14,3 +14,10 @@ a drop-off location. The marker will be shown on the drop-off location to indica
 
 ![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/rviz.gif)
 
+## delivery simulation
+
+![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/well1.gif)
+
+![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/well2.gif)
+
+![](https://github.com/RollingOat/robonp_homeservice_robot/blob/master/well3.gif)
