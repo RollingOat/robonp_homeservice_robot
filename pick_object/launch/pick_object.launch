@@ -1,16 +1,12 @@
 <launch>
     <param name="pick_up_x" value="2.0"/>
-    <param name="pick_up_y" value="0.0"/>
+    <param name="pick_up_y" value="5.0"/>
     <param name="pick_up_w" value="1.0"/>
-    <param name="drop_off_x" value="2.0"/>
-    <param name="drop_off_y" value="1.0"/>
+    <param name="drop_off_x" value="6.5"/>
+    <param name="drop_off_y" value="3"/>
     <param name="drop_off_w" value="1.0"/>
-
-    <!-- <include file="$(find my_robot)/launch/world.launch"/> -->
-    <!-- <include file="$(find mcl_localizer)/launch/amcl.launch"/> -->
-    <!-- <include file="$(find rtab_mapping)/launch/mapping.launch"/> -->
-
-    <node name="pick_object" pkg="pick_object" type="pick_object"/>
-    <!-- <node name="add_markers_node" pkg="add_markers" type="add_markers"/> -->
+    
+    <node name="pick_object" pkg="pick_object" type="pick_object" output="screen"/>
+    <node name="add_marker" pkg="add_markers" type="add_markers" output="screen"/>
 
 </launch>

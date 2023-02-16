@@ -40,15 +40,16 @@ int main(int argc, char** argv){
     nh.getParam("pick_up_x", pick_up_goal[0]);
     nh.getParam("pick_up_y", pick_up_goal[1]);
     nh.getParam("pick_up_w", pick_up_goal[2]);
-    nh.getParam("drop_off_x", pick_up_goal[0]);
-    nh.getParam("drop_off_x", pick_up_goal[1]);
-    nh.getParam("drop_off_x", pick_up_goal[2]);
+    nh.getParam("drop_off_x", drop_off_goal[0]);
+    nh.getParam("drop_off_y", drop_off_goal[1]);
+    nh.getParam("drop_off_w", drop_off_goal[2]);
+    ROS_INFO("pick up coordinate:%f, %f",pick_up_goal[0], pick_up_goal[1]);
+    ROS_INFO("drop off coordinate:%f, %f",drop_off_goal[0], drop_off_goal[1]);
 
     move_base_msgs::MoveBaseGoal goal;
 
     // pick up
     setup_goal(goal, pick_up_goal, ac);
-
     if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
         ROS_INFO("Hooray, the robot reached the pick up location");
         // wait for 5 second

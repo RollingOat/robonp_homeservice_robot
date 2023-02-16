@@ -79,6 +79,7 @@ void reachCallback(const geometry_msgs::PoseWithCovarianceStamped& robot_pos){
     ros::param::get("drop_off_w",drop_w);
     if(!pickup_reached){
         double dist_pick = sqrt(pow(pick_x - robot_x, 2) + pow(pick_y - robot_y, 2));
+        ROS_INFO("current distance to pick up:%f\n",dist_pick);
         if(dist_pick<=thres){ // if reach the pick up zone, make marker disappear
             pickup_reached = true;
             publish_marker(pick_x, pick_y, false);
@@ -89,6 +90,7 @@ void reachCallback(const geometry_msgs::PoseWithCovarianceStamped& robot_pos){
     }
     else if(pickup_reached && !dropoff_reached){
         double dist_drop = sqrt(pow(drop_x - robot_x, 2) + pow(drop_y - robot_y, 2));
+        ROS_INFO("current distance to drop off:%f\n",dist_drop);
         if(dist_drop<=thres){ // if reach the drop off zone, make marker appear
             dropoff_reached = true;
             publish_marker(drop_x, drop_y, true);
@@ -104,6 +106,6 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
   marker_pub = n.advertise<visualization_msgs::Marker>("target_object", 1);
-  ros::Subscriber odom_sub = n.subscribe("/amcl_pose ", 10, reachCallback);
+  ros::Subscriber odom_sub = n.subscribe("/amcl_pose", 10, reachCallback);
   ros::spin();
 }
