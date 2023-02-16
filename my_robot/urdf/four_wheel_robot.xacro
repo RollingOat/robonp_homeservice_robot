@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 
 <robot name="four_wheel_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo"/>
+  <xacro:include filename="$(find my_robot)/urdf/four_wheel_robot.gazebo"/>
   
   <link name="robot_footprint"></link>
 
@@ -251,7 +251,7 @@
   </link>
 
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.1 0 0.08" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -264,7 +264,4 @@
   <gazebo reference="camera">
     <material>Gazebo/Yellow</material>
   </gazebo>
-
-
-
 </robot>
